@@ -1,0 +1,35 @@
+{
+  "entities": [
+    "Solar System",
+    "Sun",
+    "planets",
+    "moons"
+  ],
+  "relations": [
+    [
+      "Solar System",
+      "contains",
+      "Sun"
+    ],
+    [
+      "Solar System",
+      "contains",
+      "planets"
+    ],
+    [
+      "Solar System",
+      "contains",
+      "moons"
+    ],
+    [
+      "Sun",
+      "orbits around",
+      "planets"
+    ],
+    [
+      "planets",
+      "have",
+      "moons"
+    ]
+  ]
+}

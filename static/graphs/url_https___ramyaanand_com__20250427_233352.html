@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 700px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 1, "id": "Ramya Anand", "label": "Ramya Anand", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 1, "id": "Visual Designer", "label": "Visual Designer", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f54242", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 2, "id": "Google", "label": "Google", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f54242", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 2, "id": "Visual Storytelling", "label": "Visual Storytelling", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 1, "id": "Multi-channel Print and Digital Campaigns", "label": "Multi-channel Print and Digital Campaigns", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f54242", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 2, "id": "Social Media Campaigns", "label": "Social Media Campaigns", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#42f54e", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 3, "id": "Design Libraries", "label": "Design Libraries", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "id": "Engineering Background", "label": "Engineering Background", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "id": "UX Skills", "label": "UX Skills", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#42f54e", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 3, "id": "Google Developer Studio", "label": "Google Developer Studio", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "id": "Google Cloud Thumbnails", "label": "Google Cloud Thumbnails", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "id": "Google Play Tips Animated Campaign", "label": "Google Play Tips Animated Campaign", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "id": "Google Cloud Illustration Library", "label": "Google Cloud Illustration Library", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "id": "Motion Graphics for Google", "label": "Motion Graphics for Google", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "id": "Kivvi Shoes Thank You Card", "label": "Kivvi Shoes Thank You Card", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "id": "Android Kotlin Campaign", "label": "Android Kotlin Campaign", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "id": "Marketing Design for Mission College", "label": "Marketing Design for Mission College", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "id": "Bank of America Subscription Tracking Feature", "label": "Bank of America Subscription Tracking Feature", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "id": "Priceline Website", "label": "Priceline Website", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#9942f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 5, "id": "ramya.vdesign@gmail.com", "label": "ramya.vdesign@gmail.com", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f5a742", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 4, "id": "Google Cloud", "label": "Google Cloud", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#9942f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 5, "id": "Google Play", "label": "Google Play", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 1, "id": "Kivvi Shoes", "label": "Kivvi Shoes", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f54242", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 2, "id": "Android Kotlin", "label": "Android Kotlin", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#42f54e", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 3, "id": "Mission College", "label": "Mission College", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f5a742", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 4, "id": "Bank of America", "label": "Bank of America", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#9942f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 5, "id": "Priceline", "label": "Priceline", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#42f54e", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 3, "id": "Illustration", "label": "Illustration", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f5a742", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 4, "id": "Animation", "label": "Animation", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#9942f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 5, "id": "Marketing Concepts", "label": "Marketing Concepts", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f5a742", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 4, "id": "Graphic Design", "label": "Graphic Design", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#9942f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 5, "id": "Design System", "label": "Design System", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 1, "id": "Youtube", "label": "Youtube", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f54242", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 2, "id": "Motion Design", "label": "Motion Design", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#42f54e", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 3, "id": "Storyboard", "label": "Storyboard", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f5a742", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 4, "id": "Illustration Library", "label": "Illustration Library", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#9942f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 5, "id": "Motion Graphics", "label": "Motion Graphics", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 1, "id": "Thank You Card", "label": "Thank You Card", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f54242", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 2, "id": "Social Media Campaign", "label": "Social Media Campaign", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#42f54e", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 3, "id": "Print Design", "label": "Print Design", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f5a742", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 4, "id": "Subscription Tracking Feature", "label": "Subscription Tracking Feature", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#9942f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 5, "id": "Website Redesign", "label": "Website Redesign", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 1, "id": "Case Study", "label": "Case Study", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f54242", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 2, "id": "User Research", "label": "User Research", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#42f54e", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 3, "id": "UX Design", "label": "UX Design", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f5a742", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 4, "id": "User Testing", "label": "User Testing", "shadow": true, "shape": "dot", "size": 25}]);
+                  edges = new vis.DataSet([{"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "is a", "smooth": {"type": "continuous"}, "to": "Visual Designer", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "works at", "smooth": {"type": "continuous"}, "to": "Google", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "specializes in", "smooth": {"type": "continuous"}, "to": "Visual Storytelling", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "creates", "smooth": {"type": "continuous"}, "to": "Multi-channel Print and Digital Campaigns", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "drives", "smooth": {"type": "continuous"}, "to": "Social Media Campaigns", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "builds", "smooth": {"type": "continuous"}, "to": "Design Libraries", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "has an", "smooth": {"type": "continuous"}, "to": "Engineering Background", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "has", "smooth": {"type": "continuous"}, "to": "UX Skills", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "works with", "smooth": {"type": "continuous"}, "to": "Google Developer Studio", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "reimagined", "smooth": {"type": "continuous"}, "to": "Google Cloud Thumbnails", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "created", "smooth": {"type": "continuous"}, "to": "Google Play Tips Animated Campaign", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "developed", "smooth": {"type": "continuous"}, "to": "Google Cloud Illustration Library", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "crafted", "smooth": {"type": "continuous"}, "to": "Motion Graphics for Google", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "designed", "smooth": {"type": "continuous"}, "to": "Kivvi Shoes Thank You Card", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "created", "smooth": {"type": "continuous"}, "to": "Android Kotlin Campaign", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "designed", "smooth": {"type": "continuous"}, "to": "Marketing Design for Mission College", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "explored", "smooth": {"type": "continuous"}, "to": "Bank of America Subscription Tracking Feature", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "redesigned", "smooth": {"type": "continuous"}, "to": "Priceline Website", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "Ramya Anand", "label": "can be reached at", "smooth": {"type": "continuous"}, "to": "ramya.vdesign@gmail.com", "width": 2}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"forceAtlas2Based": {"gravitationalConstant": -50, "centralGravity": 0.01, "springLength": 100, "springConstant": 0.08}, "solver": "forceAtlas2Based", "minVelocity": 0.75, "timestep": 0.5}, "interaction": {"hover": true, "navigationButtons": true, "keyboard": true}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

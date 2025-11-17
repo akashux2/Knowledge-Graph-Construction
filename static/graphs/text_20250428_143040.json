@@ -1,0 +1,98 @@
+{
+  "entities": [
+    "EMI",
+    "HP Laptops",
+    "HP Victus",
+    "Intel Core i7 12th Gen 12650H",
+    "16 GB",
+    "512 GB SSD",
+    "Windows 11 Home",
+    "4 GB Graphics",
+    "NVIDIA GeForce RTX 3050",
+    "15-fa0188TX",
+    "Gaming Laptop",
+    "15.6 Inch",
+    "Performance Blue",
+    "2.37 Kg",
+    "MS Office",
+    "4.5157 Ratings",
+    "13 Reviews"
+  ],
+  "relations": [
+    [
+      "HP Laptops",
+      "contains",
+      "HP Victus"
+    ],
+    [
+      "HP Victus",
+      "has_processor",
+      "Intel Core i7 12th Gen 12650H"
+    ],
+    [
+      "HP Victus",
+      "has_RAM",
+      "16 GB"
+    ],
+    [
+      "HP Victus",
+      "has_storage",
+      "512 GB SSD"
+    ],
+    [
+      "HP Victus",
+      "runs",
+      "Windows 11 Home"
+    ],
+    [
+      "HP Victus",
+      "has_graphics",
+      "4 GB Graphics"
+    ],
+    [
+      "HP Victus",
+      "has_GPU",
+      "NVIDIA GeForce RTX 3050"
+    ],
+    [
+      "HP Victus",
+      "is_model",
+      "15-fa0188TX"
+    ],
+    [
+      "HP Victus",
+      "is_type",
+      "Gaming Laptop"
+    ],
+    [
+      "HP Victus",
+      "has_screen_size",
+      "15.6 Inch"
+    ],
+    [
+      "HP Victus",
+      "has_color",
+      "Performance Blue"
+    ],
+    [
+      "HP Victus",
+      "has_weight",
+      "2.37 Kg"
+    ],
+    [
+      "HP Victus",
+      "includes",
+      "MS Office"
+    ],
+    [
+      "HP Victus",
+      "has_ratings",
+      "4.5157 Ratings"
+    ],
+    [
+      "HP Victus",
+      "has_reviews",
+      "13 Reviews"
+    ]
+  ]
+}

@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 700px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"borderWidth": 2, "color": {"background": "#f54242", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 2, "id": "HP Laptops", "label": "HP Laptops", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#42f54e", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 3, "id": "HP Victus", "label": "HP Victus", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f5a742", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 4, "id": "Intel Core i7 12th Gen 12650H", "label": "Intel Core i7 12th Gen 12650H", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#9942f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 5, "id": "16 GB", "label": "16 GB", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 1, "id": "512 GB SSD", "label": "512 GB SSD", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f54242", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 2, "id": "Windows 11 Home", "label": "Windows 11 Home", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#42f54e", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 3, "id": "4 GB Graphics", "label": "4 GB Graphics", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f5a742", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 4, "id": "NVIDIA GeForce RTX 3050", "label": "NVIDIA GeForce RTX 3050", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#9942f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 5, "id": "15-fa0188TX", "label": "15-fa0188TX", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 1, "id": "Gaming Laptop", "label": "Gaming Laptop", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f54242", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 2, "id": "15.6 Inch", "label": "15.6 Inch", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#42f54e", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 3, "id": "Performance Blue", "label": "Performance Blue", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f5a742", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 4, "id": "2.37 Kg", "label": "2.37 Kg", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#9942f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 5, "id": "MS Office", "label": "MS Office", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 1, "id": "4.5157 Ratings", "label": "4.5157 Ratings", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#f54242", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 2, "id": "13 Reviews", "label": "13 Reviews", "shadow": true, "shape": "dot", "size": 25}, {"borderWidth": 2, "color": {"background": "#4287f5", "border": "#333333", "highlight": {"background": "#ffff00", "border": "#000000"}}, "font": {"bold": true, "color": "#000000", "face": "Arial", "size": 16}, "group": 1, "id": "EMI", "label": "EMI", "shadow": true, "shape": "dot", "size": 25}]);
+                  edges = new vis.DataSet([{"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Laptops", "label": "contains", "smooth": {"type": "continuous"}, "to": "HP Victus", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "has_processor", "smooth": {"type": "continuous"}, "to": "Intel Core i7 12th Gen 12650H", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "has_RAM", "smooth": {"type": "continuous"}, "to": "16 GB", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "has_storage", "smooth": {"type": "continuous"}, "to": "512 GB SSD", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "runs", "smooth": {"type": "continuous"}, "to": "Windows 11 Home", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "has_graphics", "smooth": {"type": "continuous"}, "to": "4 GB Graphics", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "has_GPU", "smooth": {"type": "continuous"}, "to": "NVIDIA GeForce RTX 3050", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "is_model", "smooth": {"type": "continuous"}, "to": "15-fa0188TX", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "is_type", "smooth": {"type": "continuous"}, "to": "Gaming Laptop", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "has_screen_size", "smooth": {"type": "continuous"}, "to": "15.6 Inch", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "has_color", "smooth": {"type": "continuous"}, "to": "Performance Blue", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "has_weight", "smooth": {"type": "continuous"}, "to": "2.37 Kg", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "includes", "smooth": {"type": "continuous"}, "to": "MS Office", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "has_ratings", "smooth": {"type": "continuous"}, "to": "4.5157 Ratings", "width": 2}, {"arrows": {"to": {"enabled": true, "type": "arrow"}}, "color": {"color": "#888888", "opacity": 0.8}, "font": {"color": "#3366CC", "face": "Arial", "size": 14, "strokeColor": "#ffffff", "strokeWidth": 1}, "from": "HP Victus", "label": "has_reviews", "smooth": {"type": "continuous"}, "to": "13 Reviews", "width": 2}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"forceAtlas2Based": {"gravitationalConstant": -50, "centralGravity": 0.01, "springLength": 100, "springConstant": 0.08}, "solver": "forceAtlas2Based", "minVelocity": 0.75, "timestep": 0.5}, "interaction": {"hover": true, "navigationButtons": true, "keyboard": true}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "entities": [
+    "Elon Musk",
+    "SpaceX",
+    "Tesla",
+    "electric car company",
+    "private space company",
+    "billionaire",
+    "CEO"
+  ],
+  "relations": [
+    [
+      "Elon Musk",
+      "was the founder of",
+      "SpaceX"
+    ],
+    [
+      "Tesla",
+      "is an",
+      "electric car company"
+    ],
+    [
+      "SpaceX",
+      "is a",
+      "private space company"
+    ],
+    [
+      "Elon Musk",
+      "is a",
+      "billionaire"
+    ],
+    [
+      "Elon Musk",
+      "is the",
+      "CEO of Tesla"
+    ]
+  ]
+}

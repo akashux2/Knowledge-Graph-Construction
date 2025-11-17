@@ -1,0 +1,68 @@
+{
+  "entities": [
+    "Knowledge graph extraction",
+    "text",
+    "unstructured text data",
+    "structured representation",
+    "knowledge graph",
+    "key entities",
+    "relationships",
+    "relevant information",
+    "querying",
+    "analysis",
+    "understanding",
+    "complex connections"
+  ],
+  "relations": [
+    [
+      "Knowledge graph extraction",
+      "process of",
+      "turning unstructured text data into a structured representation"
+    ],
+    [
+      "structured representation",
+      "is",
+      "knowledge graph"
+    ],
+    [
+      "knowledge graph",
+      "highlights",
+      "key entities"
+    ],
+    [
+      "knowledge graph",
+      "highlights",
+      "relationships"
+    ],
+    [
+      "process",
+      "involves",
+      "identifying relevant information"
+    ],
+    [
+      "process",
+      "involves",
+      "organizing relevant information"
+    ],
+    [
+      "organizing relevant information",
+      "facilitates",
+      "querying"
+    ],
+    [
+      "organizing relevant information",
+      "facilitates",
+      "analysis"
+    ],
+    [
+      "organizing relevant information",
+      "facilitates",
+      "understanding"
+    ],
+    [
+      "understanding",
+      "of",
+      "complex connections"
+    ]
+  ]
+}

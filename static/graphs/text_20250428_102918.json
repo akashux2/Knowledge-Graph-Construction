@@ -1,0 +1,121 @@
+{
+  "entities": [
+    "Text",
+    "Key Information",
+    "Graph",
+    "Main Categories",
+    "Relationships",
+    "Comparisons",
+    "Bar Chart",
+    "Line Graph",
+    "Pie Chart",
+    "Flowchart"
+  ],
+  "relations": [
+    [
+      "Text",
+      "Contains",
+      "Key Information"
+    ],
+    [
+      "Key Information",
+      "Converted Into",
+      "Graph"
+    ],
+    [
+      "Graph",
+      "Represents",
+      "Main Categories"
+    ],
+    [
+      "Graph",
+      "Represents",
+      "Relationships"
+    ],
+    [
+      "Graph",
+      "Represents",
+      "Comparisons"
+    ],
+    [
+      "Graph",
+      "Can Be",
+      "Bar Chart"
+    ],
+    [
+      "Graph",
+      "Can Be",
+      "Line Graph"
+    ],
+    [
+      "Graph",
+      "Can Be",
+      "Pie Chart"
+    ],
+    [
+      "Graph",
+      "Can Be",
+      "Flowchart"
+    ],
+    [
+      "Main Categories",
+      "Described In",
+      "Text"
+    ],
+    [
+      "Relationships",
+      "Described In",
+      "Text"
+    ],
+    [
+      "Comparisons",
+      "Described In",
+      "Text"
+    ],
+    [
+      "Graph",
+      "Organized As",
+      "Bar Chart"
+    ],
+    [
+      "Graph",
+      "Organized As",
+      "Line Graph"
+    ],
+    [
+      "Graph",
+      "Organized As",
+      "Pie Chart"
+    ],
+    [
+      "Graph",
+      "Organized As",
+      "Flowchart"
+    ],
+    [
+      "Graph",
+      "Organized As",
+      "Other Type"
+    ],
+    [
+      "Main Categories",
+      "Part Of",
+      "Graph"
+    ],
+    [
+      "Relationships",
+      "Part Of",
+      "Graph"
+    ],
+    [
+      "Comparisons",
+      "Part Of",
+      "Graph"
+    ],
+    [
+      "Other Type",
+      "Part Of",
+      "Graph"
+    ]
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "entities": [
+    "Ramya Anand",
+    "Google",
+    "Google Developer Studio",
+    "Google Cloud",
+    "Google Play",
+    "Kivvi Shoes",
+    "Android Kotlin",
+    "Mission College",
+    "Bank of America",
+    "Priceline",
+    "Visual Designer",
+    "Visual Storytelling",
+    "Illustration",
+    "Animation",
+    "Marketing Concepts",
+    "Multi-channel Print and Digital Campaigns",
+    "Social Media Campaigns",
+    "Design Libraries",
+    "Graphic Design",
+    "Design System",
+    "Youtube",
+    "Motion Design",
+    "Storyboard",
+    "Illustration Library",
+    "Motion Graphics",
+    "Thank You Card",
+    "Social Media Campaign",
+    "Print Design",
+    "Subscription Tracking Feature",
+    "Website Redesign",
+    "Case Study",
+    "User Research",
+    "UX Design",
+    "User Testing",
+    "ramya.vdesign@gmail.com"
+  ],
+  "relations": [
+    [
+      "Ramya Anand",
+      "is a",
+      "Visual Designer"
+    ],
+    [
+      "Ramya Anand",
+      "works at",
+      "Google"
+    ],
+    [
+      "Ramya Anand",
+      "specializes in",
+      "Visual Storytelling"
+    ],
+    [
+      "Ramya Anand",
+      "creates",
+      "Multi-channel Print and Digital Campaigns"
+    ],
+    [
+      "Ramya Anand",
+      "drives",
+      "Social Media Campaigns"
+    ],
+    [
+      "Ramya Anand",
+      "builds",
+      "Design Libraries"
+    ],
+    [
+      "Ramya Anand",
+      "has an",
+      "Engineering Background"
+    ],
+    [
+      "Ramya Anand",
+      "has",
+      "UX Skills"
+    ],
+    [
+      "Ramya Anand",
+      "works with",
+      "Google Developer Studio"
+    ],
+    [
+      "Ramya Anand",
+      "reimagined",
+      "Google Cloud Thumbnails"
+    ],
+    [
+      "Ramya Anand",
+      "created",
+      "Google Play Tips Animated Campaign"
+    ],
+    [
+      "Ramya Anand",
+      "developed",
+      "Google Cloud Illustration Library"
+    ],
+    [
+      "Ramya Anand",
+      "crafted",
+      "Motion Graphics for Google"
+    ],
+    [
+      "Ramya Anand",
+      "designed",
+      "Kivvi Shoes Thank You Card"
+    ],
+    [
+      "Ramya Anand",
+      "created",
+      "Android Kotlin Campaign"
+    ],
+    [
+      "Ramya Anand",
+      "designed",
+      "Marketing Design for Mission College"
+    ],
+    [
+      "Ramya Anand",
+      "explored",
+      "Bank of America Subscription Tracking Feature"
+    ],
+    [
+      "Ramya Anand",
+      "redesigned",
+      "Priceline Website"
+    ],
+    [
+      "Ramya Anand",
+      "can be reached at",
+      "ramya.vdesign@gmail.com"
+    ]
+  ]
+}
